@@ -1,0 +1,17 @@
+{% extends 'add_teammate/base.html' %}
+{% load render_table from django_tables2 %}
+{% block content %}
+    <h1>Our team</h1><br>
+    <div class='content-section'>
+        <form method='POST' action='{% url 'add_teammate_main' %}', enctype='multipart/form-data'>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class='btn btn-outline-info', type='submit'>Add new team member</button>
+        </form>
+    </div><br>
+    <table class='table'>
+        <h3>Team members</h3>
+        {% render_table table %}
+    </table>
+{% endblock content %}
+
