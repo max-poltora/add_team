@@ -1,5 +1,12 @@
 version: "3.8"
 
+x-db-vars: &db-vars
+    POSTGRES_HOST: "db"
+    POSTGRES_USER: "postgres"
+    POSTGRES_PASSWORD: "postgres"
+    POSTGRES_DB: "postgres"
+    PGDATA: "var/lib/postgresql/data"
+
 services: 
     server: 
         build: ./backend
@@ -10,3 +17,9 @@ services:
             - db
     db:
         image: postgres
+        environment: 
+            <<: *db-vars
+            
+volumes:
+    db:
+    
